@@ -1,0 +1,195 @@
+// 主题变量定义
+
+// 主色调
+$primary-color: #11a8cd;
+$accent-color: #007aff;
+$success-color: #34c759;
+$warning-color: #ff9500;
+$danger-color: #ff3b30;
+$info-color: #5ac8fa;
+
+// 文本颜色
+$text-color: #2c3e50;
+$text-color-light: #7f8c8d;
+$text-color-dark: #1a1a1a;
+
+// 背景颜色
+$body-bg: #ffffff;
+$body-bg-dark: #1a1a1a;
+$card-bg: #ffffff;
+$card-bg-dark: #2d2d2d;
+
+// 边框颜色
+$border-color: #e1e5e9;
+$border-color-dark: #404040;
+
+// 阴影
+$shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+// 圆角
+$border-radius-small: 4px;
+$border-radius-medium: 8px;
+$border-radius-large: 12px;
+
+// 间距
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 字体大小
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+
+// 字体权重
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 过渡动画
+$transition-fast: 0.15s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// 断点
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// CSS 变量（用于主题切换）
+:root {
+  --primaryColor: #{$primary-color};
+  --accentColor: #{$accent-color};
+  --successColor: #{$success-color};
+  --warningColor: #{$warning-color};
+  --dangerColor: #{$danger-color};
+  --infoColor: #{$info-color};
+
+  --textColor: #{$text-color};
+  --textColorLight: #{$text-color-light};
+  --textColorDark: #{$text-color-dark};
+
+  --bodyBg: #{$body-bg};
+  --cardBg: #{$card-bg};
+
+  --borderColor: #{$border-color};
+
+  --shadowLight: #{$shadow-light};
+  --shadowMedium: #{$shadow-medium};
+  --shadowHeavy: #{$shadow-heavy};
+
+  --borderRadiusSmall: #{$border-radius-small};
+  --borderRadiusMedium: #{$border-radius-medium};
+  --borderRadiusLarge: #{$border-radius-large};
+
+  --spacingXs: #{$spacing-xs};
+  --spacingSm: #{$spacing-sm};
+  --spacingMd: #{$spacing-md};
+  --spacingLg: #{$spacing-lg};
+  --spacingXl: #{$spacing-xl};
+
+  --fontSizeXs: #{$font-size-xs};
+  --fontSizeSm: #{$font-size-sm};
+  --fontSizeBase: #{$font-size-base};
+  --fontSizeLg: #{$font-size-lg};
+  --fontSizeXl: #{$font-size-xl};
+  --fontSize2xl: #{$font-size-2xl};
+  --fontSize3xl: #{$font-size-3xl};
+
+  --fontWeightLight: #{$font-weight-light};
+  --fontWeightNormal: #{$font-weight-normal};
+  --fontWeightMedium: #{$font-weight-medium};
+  --fontWeightSemibold: #{$font-weight-semibold};
+  --fontWeightBold: #{$font-weight-bold};
+
+  --transitionFast: #{$transition-fast};
+  --transitionNormal: #{$transition-normal};
+  --transitionSlow: #{$transition-slow};
+}
+
+// 深色主题变量
+[data-theme="dark"] {
+  --textColor: #{$text-color-dark};
+  --textColorLight: #{$text-color-light};
+  --bodyBg: #{$body-bg-dark};
+  --cardBg: #{$card-bg-dark};
+  --borderColor: #{$border-color-dark};
+}
+
+// 混合器
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card-style {
+  background-color: var(--cardBg);
+  border-radius: var(--borderRadiusMedium);
+  box-shadow: var(--shadowLight);
+  padding: var(--spacingLg);
+  transition: var(--transitionNormal);
+
+  &:hover {
+    box-shadow: var(--shadowMedium);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-style($bg-color: var(--accentColor), $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: var(--borderRadiusSmall);
+  padding: var(--spacingSm) var(--spacingMd);
+  font-size: var(--fontSizeBase);
+  font-weight: var(--fontWeightMedium);
+  cursor: pointer;
+  transition: var(--transitionFast);
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
